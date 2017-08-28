@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data
+        >
+        <variable
+            name="viewModel"
+            type="com.toong.androidbindingcustomtab.MainViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.toong.androidbindingcustomtab.MainActivity"
+        >
+
+        <com.toong.androidbindingcustomtab.CustomTab
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:setUpWithViewpager="@{ viewPager }"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            app:adapter="@{viewModel.pagerAdapter}"
+            />
+    </LinearLayout>
+</layout>
