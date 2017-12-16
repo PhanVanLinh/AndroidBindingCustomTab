@@ -1,6 +1,8 @@
 package com.toong.androidbindingcustomtab;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,9 +17,17 @@ public class MainViewModel extends BaseObservable {
 
     MainViewModel(FragmentActivity context) {
         mContext = context;
-        createViewPager();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                createViewPager();
+            }
+        }, 1000);
+
+//        createViewPager(); create viewpager adapter immediately
     }
 
+    @Bindable
     public PagerAdapter getPagerAdapter() {
         return adapter;
     }
@@ -25,8 +35,10 @@ public class MainViewModel extends BaseObservable {
     private void createViewPager() {
         adapter = new ViewPagerAdapter(mContext.getSupportFragmentManager());
         adapter.addFrag(new Fragment1(), "Tab 1");
-        adapter.addFrag(new Fragment1(), "Tab 1");
-        adapter.addFrag(new Fragment1(), "Tab 1");
+        adapter.addFrag(new Fragment1(), "Tab 2");
+        adapter.addFrag(new Fragment1(), "Tab 3");
+
+        notifyPropertyChanged(BR.pagerAdapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

@@ -22,7 +22,7 @@
         <com.toong.androidbindingcustomtab.CustomTab
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:tabGravity="fill"
             app:tabMode="fixed"
